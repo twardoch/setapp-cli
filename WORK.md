@@ -16,4 +16,7 @@ this_file: WORK.md
 - Apple Silicon release build passes. Local universal linking is blocked by missing x86_64 Swift compatibility archives in the installed toolchain. CI now explicitly builds and verifies both release architectures on macOS 15.
 - Comparison build: used the upstream command entry point with an embedded Setapp framework rpath and no startup-helper invocation. It loads SetappInterface and receives the identical XPC -401010 rejection. This independently confirms that rejection is not introduced by the relaunch or dyld fallback paths.
 - SwiftFormat 0.64.0 and SwiftLint 0.61.0 both pass across the repository after formatting the existing conditional bodies.
-- Pending: publish the verified branch, open the upstream PR, and inspect CI release verification. Full live reinstall remains unverified because Setapp rejects the upstream client too.
+- Installed the verified Apple Silicon release locally, preserving the previous executable in the ignored build directory. Version/help/list/bundle-dump smoke checks pass, including after moving the executable to a path with spaces. WiFi Signal remains installed.
+- Published both the fix branch and fork main; opened [upstream PR #4](https://github.com/maximlevey/setapp-cli/pull/4).
+- Upstream CI awaits first-time-contributor approval. Fork [Build](https://github.com/twardoch/setapp-cli/actions/runs/39284947318) and [Lint](https://github.com/twardoch/setapp-cli/actions/runs/39284947253) runs are queued for macOS runners; inspect these for universal release verification.
+- Full live reinstall remains unverified because Setapp rejects the upstream client too. The reported framework-load failure is resolved; the separate XPC compatibility issue remains open.
